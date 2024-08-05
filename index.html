@@ -11,16 +11,69 @@
   </head>
   <body class="bg-slate-100">
     <div class="mx-[50px] mt-[30px]">
-      <div>
-        <div class="font-medium text-[20px]">Токены</div>
+      <div class="flex flex-col gap-y-3.5">
+        <div class="font-medium text-[20px] text-xl">Токены</div>
         <div>
           <input class="outline-none px-2.5 py-2 border-2 border-solid border-gray-300 rounded-lg shadow-[0_0px_11px_-2px_rgba(34,60,80,0.2)]" type="text" name="a" id="" placeholder="Например BTC">
         </div>
-        <div class="border-2 border-solid border-gray-300 px-2.5 py-[5px] w-fit rounded-md">
-          <button type="button">
-            <span class="icon-[zondicons--add-outline]"></span>
+        <div>
+          <button type="button" id="search-btn" class="border-[1px] border-solid border-gray-300 bg-white px-2.5 py-[5px] w-fit rounded-md transition hover:bg-slate-600 hover:text-white hover:border-slate-600">
+            <span class="icon-[zondicons--add-outline] align-middle"></span>
             <span>Добавить</span>
           </button>
+        </div>
+        <hr class="border-y border-slate-500">
+        <div class="grid gap-9 grid-cols-3">
+          <div class="bg-white flex flex-col text-center">
+            <div class="mt-6 text-sm font-medium" id="coin-card__title">BTC - USD</div>
+            <div class="mt-1 text-4xl font-bold" id="coin-card__value">60152.23</div>
+            <div class="bg-slate-300 mt-5 transition hover:bg-slate-600 hover:text-white cursor-pointer">
+              <button type="button" class="py-5">
+                <span class="icon-[f7--trash] align-middle"></span>
+                Удалить
+              </button>
+            </div>
+          </div>
+          <div class="bg-white flex flex-col text-center">
+            <div class="mt-6 text-sm font-medium" id="coin-card__title">BTC - USD</div>
+            <div class="mt-1 text-4xl font-bold" id="coin-card__value">60152.23</div>
+            <div class="bg-slate-300 mt-5 transition hover:bg-slate-600 hover:text-white cursor-pointer">
+              <button type="button" class="py-5">
+                <span class="icon-[f7--trash] align-middle"></span>
+                Удалить
+              </button>
+            </div>
+          </div>
+          <div class="bg-white flex flex-col text-center">
+            <div class="mt-6 text-sm font-medium" id="coin-card__title">BTC - USD</div>
+            <div class="mt-1 text-4xl font-bold" id="coin-card__value">60152.23</div>
+            <div class="bg-slate-300 mt-5 transition hover:bg-slate-600 hover:text-white cursor-pointer">
+              <button type="button" class="py-5">
+                <span class="icon-[f7--trash] align-middle"></span>
+                Удалить
+              </button>
+            </div>
+          </div>
+          <div class="bg-white flex flex-col text-center">
+            <div class="mt-6 text-sm font-medium" id="coin-card__title">BTC - USD</div>
+            <div class="mt-1 text-4xl font-bold" id="coin-card__value">60152.23</div>
+            <div class="bg-slate-300 mt-5 transition hover:bg-slate-600 hover:text-white cursor-pointer">
+              <button type="button" class="py-5">
+                <span class="icon-[f7--trash] align-middle"></span>
+                Удалить
+              </button>
+            </div>
+          </div>
+          <div class="bg-white flex flex-col text-center">
+            <div class="mt-6 text-sm font-medium" id="coin-card__title">BTC - USD</div>
+            <div class="mt-1 text-4xl font-bold" id="coin-card__value">60152.23</div>
+            <div class="bg-slate-300 mt-5 transition hover:bg-slate-600 hover:text-white cursor-pointer">
+              <button type="button" class="py-5">
+                <span class="icon-[f7--trash] align-middle"></span>
+                Удалить
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>

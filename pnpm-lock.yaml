@@ -8,6 +8,9 @@ importers:
 
   .:
     devDependencies:
+      '@iconify-json/f7':
+        specifier: ^1.1.1
+        version: 1.1.1
       '@iconify-json/zondicons':
         specifier: ^1.1.9
         version: 1.1.9
@@ -179,6 +182,9 @@ packages:
     engines: {node: '>=12'}
     cpu: [x64]
     os: [win32]
+
+  '@iconify-json/f7@1.1.1':
+    resolution: {integrity: sha512-R8QxEsPmOKY9eZXgyFT+c5cQZv6RPPTJ7ft4Ef/90s9C6Bc/NfiDrUCSnoPnVWKVK1PHGWtaEvhIE3IgJVg93Q==}
 
   '@iconify-json/zondicons@1.1.9':
     resolution: {integrity: sha512-tWO2z/iFLmmVdosNBYvh9xM+cXI+l8QNXSFvjrMpmp952QMLGWCifpcK+qIFNQs44vgXEzKwCm0z7Q/685WtuA==}
@@ -950,6 +956,10 @@ snapshots:
 
   '@esbuild/win32-x64@0.21.5':
     optional: true
+
+  '@iconify-json/f7@1.1.1':
+    dependencies:
+      '@iconify/types': 2.0.0
 
   '@iconify-json/zondicons@1.1.9':
     dependencies:

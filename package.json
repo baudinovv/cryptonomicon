@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "devDependencies": {
+    "@iconify-json/f7": "^1.1.1",
     "@iconify-json/zondicons": "^1.1.9",
     "@iconify/tailwind": "^1.1.2",
     "autoprefixer": "^10.4.19",
