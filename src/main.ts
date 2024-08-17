@@ -3,13 +3,20 @@ const tokensBox = document.querySelector('#tokens-box') as HTMLDivElement;
 const tokensInput = document.querySelector('#tokens-input') as HTMLInputElement;
 const apiKey = "548543d60cae568eca567de3ef6e1c3a8481c14af37ce4aeb38a22a4f80868e2";
 
+interface Coin{
+    Id: string,
+    ImageUrl: string, 
+    Symbol: string, 
+    FullName: string
+} 
+
+let coinCollection: Record<string, Coin> = {};
+
 async function showResponse(coin: string , money: string) {
 
-    let apiAdress = fetch(`https://min-api.cryptocompare.com/data/price?fsym=${coin}&tsyms=${money}&api_key=${apiKey}`);
-  
-    let result = await apiAdress; 
+    let apiAdress = await fetch(`https://min-api.cryptocompare.com/data/price?fsym=${coin}&tsyms=${money}&api_key=${apiKey}`); 
 
-    result.json()
+    apiAdress.json()
         .then(res => {
             if(res.USD == undefined){
                 return 1;
@@ -44,12 +51,17 @@ async function showResponse(coin: string , money: string) {
             });
         });
 }
-async function hui() {
-    let hui = fetch('https://min-api.cryptocompare.com/data/all/coinlist?summary=true');
-    let res = await hui;
-    hui.json().then(res => console.log(res));
+
+
+async function coinList() {
+    let path = await fetch('https://min-api.cryptocompare.com/data/all/coinlist?summary=true');
+    coinCollection = path.json().Data;
+    console.log(coinCollection)
 }
-hui()
+coinList();
+
+console.log(coinCollection)
+
 addBtn.addEventListener('click', () =>{
     showResponse(tokensInput.value, 'USD');
 });
