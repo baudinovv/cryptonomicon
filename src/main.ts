@@ -38,7 +38,7 @@ async function addCoin(coin: string , money: string) {
     elemBox.append(elemTitle,elemValue,elemBtnBox);
     elemBtnBox.append(elemBtn);
 
-    elemBox.setAttribute('name', coin);
+    elemBox.setAttribute('name', coin.toUpperCase());
     tokensBox.append(elemBox);
 
     elemTitle.innerHTML = `${coin.toUpperCase()} - ${money} `
@@ -78,17 +78,18 @@ async function updateCoin() {
                 updateCoinsList = updateCoinsList + `${(tokensBox.childNodes[i] as HTMLDivElement).getAttribute('name')}`;
             }
         }
-        let apiAdress = await fetch(`https://min-api.cryptocompare.com/data/pricemulti?fsyms=${updateCoinsList}&tsyms=USD&api_key=${apiKey}`); 
-        apiAdress.json()
+        let updateAdress = await fetch(`https://min-api.cryptocompare.com/data/pricemulti?fsyms=${updateCoinsList}&tsyms=USD&api_key=${apiKey}`); 
+        updateAdress.json()
             .then(res => {
                 for(let i = 0; i < tokensBox.childNodes.length; i++){
-                    let updateName = (tokensBox.childNodes[i] as HTMLDivElement).getAttribute('name') as string;
-                    (document.querySelector(`[name=${(tokensBox.childNodes[i] as HTMLDivElement).getAttribute('name')}] #price`) as HTMLDivElement).innerHTML = `${res[updateName].USD}`
+                    try{
+                        (document.querySelector(`[name=${(tokensBox.childNodes[i] as HTMLDivElement).getAttribute('name')}] #price`) as HTMLDivElement).innerHTML = `${res[updateName].USD}`
+                        let updateName = (tokensBox.childNodes[i] as HTMLDivElement).getAttribute('name') as string;
+                    } catch{}
                 }
             });
     } catch{}
 }
-
 setInterval(updateCoin, 1000);
 
 
