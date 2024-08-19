@@ -83,8 +83,8 @@ async function updateCoin() {
             .then(res => {
                 for(let i = 0; i < tokensBox.childNodes.length; i++){
                     try{
-                        (document.querySelector(`[name=${(tokensBox.childNodes[i] as HTMLDivElement).getAttribute('name')}] #price`) as HTMLDivElement).innerHTML = `${res[updateName].USD}`
                         let updateName = (tokensBox.childNodes[i] as HTMLDivElement).getAttribute('name') as string;
+                        (document.querySelector(`[name=${(tokensBox.childNodes[i] as HTMLDivElement).getAttribute('name')}] #price`) as HTMLDivElement).innerHTML = `${res[updateName].USD}`
                     } catch{}
                 }
             });
