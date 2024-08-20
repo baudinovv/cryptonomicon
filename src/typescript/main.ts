@@ -1,10 +1,11 @@
+const apiKey = import.meta.env.VITE_API_KEY;
+
 const addBtn = document.querySelector('#search-btn') as HTMLDivElement;
 const tokensBox = document.querySelector('#tokens-box') as HTMLDivElement;
 const tokensInput = document.querySelector('#tokens-input') as HTMLInputElement;
-const apiKey = "548543d60cae568eca567de3ef6e1c3a8481c14af37ce4aeb38a22a4f80868e2";
 const completeMain = document.querySelector('#auto-complete') as HTMLDivElement;
 const completeBox = document.querySelector('#auto-complete-box') as HTMLDivElement;
-const completeItem = document.querySelectorAll('#complete-item');
+const completeItem = document.querySelectorAll('#complete-item') as NodeList;
 
 interface Coin{
     Id: string,
@@ -12,13 +13,11 @@ interface Coin{
     Symbol: string, 
     FullName: string
 } 
-
 let coinCollection: Record<string, Coin> = {};
 
 async function addCoin(coin: string , money: string) {
-
+    
     let apiAdress = await fetch(`https://min-api.cryptocompare.com/data/price?fsym=${coin}&tsyms=${money}&api_key=${apiKey}`); 
-
 
     const elemBox = document.createElement('div');
     const elemTitle = document.createElement('div');
@@ -62,36 +61,8 @@ async function addCoin(coin: string , money: string) {
             }
             elemTitle.innerHTML = `${coin.toUpperCase()} - ${money} `;
             elemValue.innerHTML = `${res.USD}`;
-
         });
 }
-
-
-async function updateCoin() {
-    try{
-        if(!tokensBox.childNodes.length) return 1;
-        let updateCoinsList = '';
-        for(let i = 0; i < tokensBox.childNodes.length ; i++){
-            if(tokensBox.childNodes[i + 1]){
-                updateCoinsList = updateCoinsList + `${(tokensBox.childNodes[i] as HTMLDivElement).getAttribute('name')},`;
-            } else{
-                updateCoinsList = updateCoinsList + `${(tokensBox.childNodes[i] as HTMLDivElement).getAttribute('name')}`;
-            }
-        }
-        let updateAdress = await fetch(`https://min-api.cryptocompare.com/data/pricemulti?fsyms=${updateCoinsList}&tsyms=USD&api_key=${apiKey}`); 
-        updateAdress.json()
-            .then(res => {
-                for(let i = 0; i < tokensBox.childNodes.length; i++){
-                    try{
-                        let updateName = (tokensBox.childNodes[i] as HTMLDivElement).getAttribute('name') as string;
-                        (document.querySelector(`[name=${(tokensBox.childNodes[i] as HTMLDivElement).getAttribute('name')}] #price`) as HTMLDivElement).innerHTML = `${res[updateName].USD}`
-                    } catch{}
-                }
-            });
-    } catch{}
-}
-setInterval(updateCoin, 1000);
-
 
 async function coinList() {
     let path = await fetch('https://min-api.cryptocompare.com/data/all/coinlist?summary=true');
@@ -103,6 +74,7 @@ addBtn.addEventListener('click', () =>{
     if(tokensInput.value){
         addCoin(tokensInput.value, 'USD');
         tokensInput.value = "";
+        // console.log(Array.from(tokensBox.childNodes)[0].getAttribute('name'));
     }
 });
 tokensInput.addEventListener('keypress', function(e : KeyboardEvent){
@@ -153,6 +125,7 @@ addBtn.addEventListener('blur' , () => {
     addBtn.removeAttribute('active');
 });
 
+
 tokensInput.addEventListener('input', function(){   
     try{
         let coinTuple = Object.keys(coinCollection).filter((word) => word.match(new RegExp(`${tokensInput.value.toUpperCase()}`)));
@@ -164,7 +137,7 @@ tokensInput.addEventListener('input', function(){
                     continue;
                 }
                 showComplete();
-                completeItem[i].innerHTML = coinTuple[i];
+                (completeItem[i] as HTMLDivElement).innerHTML = coinTuple[i];
                 completeItem[i].addEventListener('click' , (e) => {
                     e.stopImmediatePropagation()
                     tokensInput.value = `${completeItem[i].textContent}`;
@@ -209,7 +182,5 @@ tokensInput.addEventListener('input', function(){
         } else{
             hideComplete();
         }
-    } catch{
-        
-    }
+    } catch{}
 });
