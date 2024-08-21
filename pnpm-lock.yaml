@@ -7,6 +7,10 @@ settings:
 importers:
 
   .:
+    dependencies:
+      '@iconify-json/flat-color-icons':
+        specifier: ^1.1.11
+        version: 1.1.11
     devDependencies:
       '@iconify-json/f7':
         specifier: ^1.1.1
@@ -185,6 +189,9 @@ packages:
 
   '@iconify-json/f7@1.1.1':
     resolution: {integrity: sha512-R8QxEsPmOKY9eZXgyFT+c5cQZv6RPPTJ7ft4Ef/90s9C6Bc/NfiDrUCSnoPnVWKVK1PHGWtaEvhIE3IgJVg93Q==}
+
+  '@iconify-json/flat-color-icons@1.1.11':
+    resolution: {integrity: sha512-t0DQmT8L+biKqcM5v2EoORZf47c4YWeLCDeuLQiCitNNPCmDWfLo3e1Z0744uPGhXvIpwTs2fG2rVfIN17pDcA==}
 
   '@iconify-json/zondicons@1.1.9':
     resolution: {integrity: sha512-tWO2z/iFLmmVdosNBYvh9xM+cXI+l8QNXSFvjrMpmp952QMLGWCifpcK+qIFNQs44vgXEzKwCm0z7Q/685WtuA==}
@@ -958,6 +965,10 @@ snapshots:
     optional: true
 
   '@iconify-json/f7@1.1.1':
+    dependencies:
+      '@iconify/types': 2.0.0
+
+  '@iconify-json/flat-color-icons@1.1.11':
     dependencies:
       '@iconify/types': 2.0.0
 

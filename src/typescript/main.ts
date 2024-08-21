@@ -16,43 +16,45 @@ interface Coin{
 let coinCollection: Record<string, Coin> = {};
 
 async function addCoin(coin: string , money: string) {
-    
-    let apiAdress = await fetch(`https://min-api.cryptocompare.com/data/price?fsym=${coin}&tsyms=${money}&api_key=${apiKey}`); 
 
+    for(let i = 0; i < tokensBox.childNodes.length; i++){
+        if((tokensBox.childNodes[i] as HTMLDivElement).getAttribute('name') == coin.toUpperCase()) return 1;
+    }
+    
     const elemBox = document.createElement('div');
     const elemTitle = document.createElement('div');
     const elemValue = document.createElement('div');
     const elemBtnBox = document.createElement('div');
     const elemBtn = document.createElement('button');
-
+    
     elemBox.className = "bg-white flex flex-col text-center";
     elemTitle.className = "mt-6 text-sm font-medium";
     elemValue.className = "mt-1 text-4xl font-bold";
     elemBtnBox.className = "bg-slate-300 mt-5 transition hover:bg-slate-600 hover:text-white cursor-pointer";
     elemBtn.className = "py-5";
-
+    
     elemBtn.type = "button";
     elemValue.id = "price";
-
+    
+    
     elemBox.append(elemTitle,elemValue,elemBtnBox);
     elemBtnBox.append(elemBtn);
-
+    
     elemBox.setAttribute('name', coin.toUpperCase());
     tokensBox.append(elemBox);
-
+    
     elemTitle.innerHTML = `${coin.toUpperCase()} - ${money} `
     elemValue.innerHTML = `-`;
     elemBtn.innerHTML = `
-        <span class="icon-[f7--trash] align-middle"></span>
-        Удалить
+    <span class="icon-[f7--trash] align-middle"></span>
+    Удалить
     `;
 
     elemBtnBox.addEventListener('click', () =>{
         elemBox.remove();
     });
-    for(let char of completeItem){
-        if((char as HTMLDivElement).getAttribute('name') == coin) return 1;
-    }
+    
+    let apiAdress = await fetch(`https://min-api.cryptocompare.com/data/price?fsym=${coin}&tsyms=${money}&api_key=${apiKey}`); 
     apiAdress.json()
         .then(res => {
             if(res.USD == undefined){
@@ -61,6 +63,7 @@ async function addCoin(coin: string , money: string) {
             }
             elemTitle.innerHTML = `${coin.toUpperCase()} - ${money} `;
             elemValue.innerHTML = `${res.USD}`;
+            elemBox.setAttribute('value', res.USD);
         });
 }
 
@@ -70,11 +73,11 @@ async function coinList() {
 }
 coinList();
 
+
 addBtn.addEventListener('click', () =>{
     if(tokensInput.value){
         addCoin(tokensInput.value, 'USD');
         tokensInput.value = "";
-        // console.log(Array.from(tokensBox.childNodes)[0].getAttribute('name'));
     }
 });
 tokensInput.addEventListener('keypress', function(e : KeyboardEvent){

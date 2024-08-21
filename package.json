@@ -18,5 +18,8 @@
     "typescript": "^5.2.2",
     "vite": "^5.3.4",
     "vite-plugin-inspect": "^0.8.5"
+  },
+  "dependencies": {
+    "@iconify-json/flat-color-icons": "^1.1.11"
   }
 }

@@ -15,11 +15,14 @@ async function updateCoin() {
         let updateAdress = await fetch(`https://min-api.cryptocompare.com/data/pricemulti?fsyms=${updateCoinsList}&tsyms=USD&api_key=${apiKey}`); 
         updateAdress.json()
             .then(res => {
-                for(let i = 0; i < tokensBox.childNodes.length; i++){
-                    try{
-                        let updateName = (tokensBox.childNodes[i] as HTMLDivElement).getAttribute('name') as string;
-                        (document.querySelector(`[name=${(tokensBox.childNodes[i] as HTMLDivElement).getAttribute('name')}] #price`) as HTMLDivElement).innerHTML = `${res[updateName].USD}`
-                    } catch{}
+                if(res.USD){
+                    for(let i = 0; i < tokensBox.childNodes.length; i++){
+                        try{
+                            let updateName = (tokensBox.childNodes[i] as HTMLDivElement).getAttribute('name') as string;
+                            (document.querySelector(`[name=${(tokensBox.childNodes[i] as HTMLDivElement).getAttribute('name')}] #price`) as HTMLDivElement).innerHTML = `${res[updateName].USD}`;
+                            (tokensBox.childNodes[i] as HTMLDivElement).setAttribute('value', res[updateName].USD);
+                        } catch{}
+                    }
                 }
             });
     } catch{}

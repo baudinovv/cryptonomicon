@@ -29,7 +29,10 @@
           </button>
         </div>
         <hr class="border-y border-slate-500">
-        <input id="tokens-input-search" autocomplete="off" tabindex="1" class="outline-none px-2.5 py-2 border-2 border-solid border-gray-300 rounded-lg shadow-[0_0px_11px_-2px_rgba(34,60,80,0.2)] w-fit" type="text" name="a" placeholder="Поиск">
+        <div class="flex items-center">
+          <input id="tokens-input-search" autocomplete="off" tabindex="1" class="outline-none px-2.5 py-2 border-2 border-solid border-gray-300 rounded-lg shadow-[0_0px_11px_-2px_rgba(34,60,80,0.2)] w-fit" type="text" name="a" placeholder="Поиск">
+          <span mode="increase" class="icon-[flat-color-icons--numerical-sorting-12] h-10 w-10 cursor-pointer" id="sort-btn"></span>
+        </div>
         <hr class="border-y border-slate-500">
         <div class="grid gap-9 grid-cols-3" id="tokens-box"></div>
       </div>
