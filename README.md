@@ -9,6 +9,7 @@
 * Vite
 * HTML5
 * TypeScript
+* API (https://www.cryptocompare.com/)
 
 ## Support
 * (Only for now) Desktop version 
