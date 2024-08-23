@@ -29,6 +29,14 @@ pnpm dev
 pnpm build
 ```
 
+Do not forget to install and configure Iconify for Tailwind CSS:
+``` bash
+# install dependencies
+pnpm install --save-dev @iconify/tailwind
+```
+
+Or follow Vite's recommendations.
+
 ## [Demo site](https://baudinovv.github.io/cryptonomicon/)
 
 # Contact
